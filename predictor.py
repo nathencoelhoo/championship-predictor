@@ -32,6 +32,7 @@ def load_data(pattern="data/E1_*.csv"):
         raise FileNotFoundError("No CSVs found. See the docstring for download steps.")
     df = pd.concat(frames, ignore_index=True)
     df = df.dropna(subset=["HomeTeam", "AwayTeam", "FTR"])
+    df = df.drop_duplicates(subset=["Date", "HomeTeam", "AwayTeam"])
     df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
     cols = ["season", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR",
             "B365H", "B365D", "B365A"]
