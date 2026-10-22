@@ -4,7 +4,9 @@ Run: streamlit run app.py
 """
 import pandas as pd
 import streamlit as st
-from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 from predictor import CLASSES, add_elo, add_form, load_data, make_X, predict_fixture
 
@@ -18,9 +20,7 @@ def build():
     df, long = add_form(df)
     X, y = make_X(df), df.FTR.map(CLASSES)
     ok = X.notna().all(axis=1)
-    model = HistGradientBoostingClassifier(
-        max_depth=3, learning_rate=0.05, max_iter=200, random_state=0
-    ).fit(X[ok], y[ok].astype(int))
+    model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000)).fit(X[ok], y[ok].astype(int))
     return df, ratings, long, model
 
 
