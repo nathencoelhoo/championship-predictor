@@ -31,6 +31,7 @@ teams = sorted(set(latest.HomeTeam) | set(latest.AwayTeam))
 
 st.title("⚽ EFL Championship Predictor")
 st.caption(f"Elo + rolling form model. Data up to {df.Date.max():%d %b %Y}.")
+st.caption(f"{len(df)} matches loaded | seasons: {', '.join(sorted(df.season.unique()))}")
 
 c1, c2 = st.columns(2)
 home = c1.selectbox("Home", teams, index=0)
@@ -62,7 +63,16 @@ def elo_series(team):
 
 
 elo = pd.concat([elo_series(home), elo_series(away)], axis=1).sort_index().ffill()
-st.line_chart(elo)
+import altair as alt
+plot_df = elo.rename_axis("Date").reset_index().melt("Date", var_name="Team", value_name="Elo")
+st.altair_chart(
+    alt.Chart(plot_df).mark_line().encode(
+        x="Date:T",
+        y=alt.Y("Elo:Q", scale=alt.Scale(zero=False)),
+        color="Team:N",
+    ),
+    use_container_width=True,
+)
 st.caption(f"Current Elo: {home} {ratings[home]:.0f} | {away} {ratings[away]:.0f}")
 
 
