@@ -55,6 +55,7 @@ def elo_series(team):
     h = df[df.HomeTeam == team].set_index("Date").home_elo
     a = df[df.AwayTeam == team].set_index("Date").away_elo
     s = pd.concat([h, a]).sort_index()
+    s = s[~s.index.duplicated(keep="last")]
     s = s[s.index >= cutoff]
     s.name = team
     return s
