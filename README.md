@@ -1,4 +1,5 @@
 # EFL Championship Match Predictor
+
 **Live demo:** https://championship-predictor.streamlit.app/
 
 Predicts Home / Draw / Away probabilities for Championship matches and
@@ -8,11 +9,18 @@ benchmarks them against bookmaker odds.
 ```
 pip install pandas numpy scikit-learn matplotlib
 ```
-Download season CSVs from https://www.football-data.co.uk/englandm.php
-(the "Championship" column) and save as `data/E1_1819.csv`, `data/E1_1920.csv`, etc.
-Aim for 6+ seasons.
 
-Run: `python predictor.py`
+## Data
+
+Results and bookmaker odds come from [football-data.co.uk](https://www.football-data.co.uk/englandm.php) (Championship, 2021-22 to 2026-27, about 2,900 matches, current season up to 17 Oct 2026). Files live in `data/` as `E1_<label>.csv`; the label in the filename is only a season tag, and the model reads real match dates from inside each file. Duplicate fixtures are dropped on load.
+
+To refresh, replace the current season's CSV in `data/` with the latest download and redeploy.
+
+Run the evaluation and the app:
+```
+python predictor.py
+streamlit run app.py
+```
 
 ## Method
 - **Elo ratings** with home advantage, goal-difference multiplier and
