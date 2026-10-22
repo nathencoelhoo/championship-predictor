@@ -45,12 +45,23 @@ Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-2
 
 **Takeaways:** Elo captures most of the available signal and clearly beats naive guessing, but every model trails the bookmakers (95% CI for Elo minus bookmaker log loss: +0.007 to +0.025). Rolling form added nothing over Elo, and gradient boosting overfit the small dataset. Early-season error is highest because newly promoted teams start at a flat rating.
 
-## Upgrades to make it stand out
-1. **Walk-forward validation**: retrain every month and evaluate on the next block.
-2. **xG features** from FBref/Understat (rolling xG for/against).
-3. **Dixon-Coles / Poisson model** to predict scorelines, then derive H/D/A.
-4. **Promoted/relegated team priors**: start new teams at a rating based on their previous league, not a flat 1450.
-5. **Calibration**: wrap the boosting model in `CalibratedClassifierCV`.
-6. **Betting simulation**: flat-stake value bets where model prob > implied prob, with a margin threshold. Report ROI and its uncertainty, and expect it to be near or below zero.
-7. **App**: Streamlit page with a fixture selector, probability bars and an Elo history chart. Deploy on Streamlit Community Cloud.
-8. **Tests and structure**: split into `data.py`, `features.py`, `models.py`, add pytest tests for leakage (e.g. a team's first match has NaN form).
+## Roadmap
+
+Done:
+- Walk-forward validation with bootstrap confidence intervals
+- Live Streamlit app with Elo history, recent form and a bookmaker comparison
+- xG feature pipeline (`xg_features.py`), ready to run once xG data is added
+
+Next:
+- Better starting ratings for promoted and relegated teams instead of a flat 1450
+- Dixon-Coles scoreline model, deriving H/D/A from predicted goals
+- Probability calibration and reliability plots
+- Betting simulation with ROI and uncertainty (expected to be near or below zero)
+- Tests for data leakage and a cleaner module structure
+
+## Files
+
+- `predictor.py`: data loading, Elo, rolling form, models
+- `walkforward.py`: monthly walk-forward evaluation vs the bookmaker
+- `xg_features.py`: optional xG features and comparison
+- `app.py`: Streamlit app
