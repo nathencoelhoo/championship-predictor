@@ -29,19 +29,21 @@ streamlit run app.py
   all shifted so a match never sees its own result.
 - **Models**: Elo-only logistic regression, logistic regression + form,
   gradient boosting.
-- **Evaluation**: train on past seasons, test on the latest (time-based split).
-  Log loss, multiclass Brier score, accuracy, calibration plot.
-  Bookmaker odds (overround removed) are the benchmark, not a feature.
+- **Evaluation**: walk-forward validation. Every month, retrain on past matches only and predict the next month, so all predictions are out-of-sample.
+  Log loss and multiclass Brier score, with Bet365 odds (margin removed) as the benchmark, not a feature.
+  Bootstrap confidence intervals compare each model with the bookmaker.
 
 ## Results
-_Fill in your table after running, and be honest about the gap to the bookmakers._
+Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-27). Lower is better; uniform guessing scores 1.0986 log loss.
 
-| Model | Log loss | Brier | Accuracy |
-|---|---|---|---|
-| Elo only | | | |
-| Logreg + form | | | |
-| Gradient boosting | | | |
-| Bookmaker | | | |
+| Model | Log loss | Brier |
+|---|---|---|
+| Elo only | 1.0526 | 0.6350 |
+| Logreg + form | 1.0560 | 0.6374 |
+| Gradient boosting | 1.1169 | 0.6718 |
+| Bookmaker (Bet365, margin removed) | 1.0364 | 0.6243 |
+
+**Takeaways:** Elo captures most of the available signal and clearly beats naive guessing, but every model trails the bookmakers (95% CI for Elo minus bookmaker log loss: +0.007 to +0.025). Rolling form added nothing over Elo, and gradient boosting overfit the small dataset. Early-season error is highest because newly promoted teams start at a flat rating.
 
 ## Upgrades to make it stand out
 1. **Walk-forward validation**: retrain every month and evaluate on the next block.
