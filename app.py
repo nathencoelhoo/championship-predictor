@@ -9,6 +9,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 from predictor import CLASSES, add_elo, add_form, load_data, make_X, predict_fixture
+from elo_v2 import add_elo_v2, load_entrants
 
 st.set_page_config(page_title="Championship Predictor", page_icon="⚽", layout="centered")
 
