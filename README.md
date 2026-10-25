@@ -63,6 +63,8 @@ Next:
 ## Files
 
 - `predictor.py`: data loading, Elo, rolling form, models
-- `walkforward.py`: monthly walk-forward evaluation vs the bookmaker
-- `xg_features.py`: optional xG features and comparison
+- `elo_v2.py`: Elo with entry priors for promoted and relegated teams
+- `walkforward.py`: monthly walk-forward evaluation against the bookmaker
+- `ratings_experiment.py`: compares Elo variants (entry priors, new-team K boost)
 - `app.py`: Streamlit app
+- `data/`: season CSVs from football-data.co.uk and `entrants.csv` (promoted and relegated teams by season)
