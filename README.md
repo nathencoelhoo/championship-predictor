@@ -45,6 +45,8 @@ Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-2
 
 **Takeaways:** Elo captures most of the available signal and clearly beats naive guessing, but every model trails the bookmakers (95% CI for Elo minus bookmaker log loss: +0.007 to +0.025). Rolling form added nothing over Elo, and gradient boosting overfit the small dataset. Early-season error is highest because newly promoted teams start at a flat rating.
 
+**Entry priors:** teams relegated from the Premier League start higher than teams promoted from League One. This lowered Elo-only log loss from 1.0546 to 1.0529 (95% CI of the difference: -0.0030 to -0.0004), with a larger gain on matches involving newly arrived teams (1.0803 to 1.0742). A K-factor boost for new teams added nothing and was dropped. The live app uses these ratings.
+
 ## Roadmap
 
 Done:
