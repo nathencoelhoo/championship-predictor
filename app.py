@@ -17,7 +17,7 @@ st.set_page_config(page_title="Championship Predictor", page_icon="⚽", layout=
 @st.cache_resource(show_spinner="Building ratings and training model...")
 def build():
     df = load_data()
-    df, ratings = add_elo(df)
+    df, ratings = add_elo_v2(df, entrants=load_entrants())
     df, long = add_form(df)
     X, y = make_X(df), df.FTR.map(CLASSES)
     ok = X.notna().all(axis=1)
