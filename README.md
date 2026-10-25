@@ -23,8 +23,7 @@ streamlit run app.py
 ```
 
 ## Method
-- **Elo ratings** with home advantage, goal-difference multiplier and
-  between-season regression to the mean.
+- **Elo ratings** with home advantage, goal-difference multiplier, between-season regression to the mean, and entry priors (teams relegated from the Premier League start higher than teams promoted from League One).
 - **Rolling form** (points, goals for/against over the last 5 matches) and rest days,
   all shifted so a match never sees its own result.
 - **Models**: Elo-only logistic regression, logistic regression + form,
@@ -52,12 +51,12 @@ Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-2
 Done:
 - Walk-forward validation with bootstrap confidence intervals
 - Live Streamlit app with Elo history, recent form and a bookmaker comparison
-- xG feature pipeline (`xg_features.py`), ready to run once xG data is added
+- Entry priors for promoted and relegated teams (small but significant gain)
 
 Next:
-- Better starting ratings for promoted and relegated teams instead of a flat 1450
 - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
 - Probability calibration and reliability plots
+- Rolling xG features (needs a Championship xG data source)
 - Betting simulation with ROI and uncertainty (expected to be near or below zero)
 - Tests for data leakage and a cleaner module structure
 
