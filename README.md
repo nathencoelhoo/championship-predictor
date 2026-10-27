@@ -56,11 +56,11 @@ Done:
 - Walk-forward validation with bootstrap confidence intervals
 - Live Streamlit app with Elo history, recent form and a bookmaker comparison
 - Entry priors for promoted and relegated teams (small but significant gain)
-- - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
+- Dixon-Coles scoreline model, deriving H/D/A from predicted goals
+- Probability calibration and reliability plots
 
 Next:
 
-- Probability calibration and reliability plots
 - Rolling xG features (needs a Championship xG data source)
 - Betting simulation with ROI and uncertainty (expected to be near or below zero)
 - Tests for data leakage and a cleaner module structure
@@ -75,3 +75,4 @@ Next:
 - `data/`: season CSVs from football-data.co.uk and `entrants.csv` (promoted and relegated teams by season)
 - - `dixon_coles.py`: Dixon-Coles scoreline model with time decay
 - `dixon_coles_experiment.py`: walk-forward comparison of Elo, Dixon-Coles and bookmaker
+-  calibration_analysis.py: reliability diagrams and calibration error for Elo, Dixon-Coles and the bookmaker
