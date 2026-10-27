@@ -45,6 +45,7 @@ Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-2
 **Takeaways:** Elo captures most of the available signal and clearly beats naive guessing, but every model trails the bookmakers (95% CI for Elo minus bookmaker log loss: +0.007 to +0.025). Rolling form added nothing over Elo, and gradient boosting overfit the small dataset. Early-season error is highest because newly promoted teams start at a flat rating.
 
 **Entry priors:** teams relegated from the Premier League start higher than teams promoted from League One. This lowered Elo-only log loss from 1.0546 to 1.0529 (95% CI of the difference: -0.0030 to -0.0004), with a larger gain on matches involving newly arrived teams (1.0803 to 1.0742). A K-factor boost for new teams added nothing and was dropped. The live app uses these ratings.
+**Dixon-Coles:** a time-decayed Dixon-Coles scoreline model (attack/defence strengths, Poisson goals, low-score correction) performed on par with Elo (log loss 1.0558 vs 1.0529; 95% CI of the difference includes zero) and was insensitive to the decay half-life (180 to 730 days). A 50/50 blend of Elo and Dixon-Coles scored 1.0502, a small gain that is not statistically significant. All models remain behind the bookmaker (1.0374).
 
 ## Roadmap
 
@@ -52,9 +53,10 @@ Done:
 - Walk-forward validation with bootstrap confidence intervals
 - Live Streamlit app with Elo history, recent form and a bookmaker comparison
 - Entry priors for promoted and relegated teams (small but significant gain)
+- - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
 
 Next:
-- Dixon-Coles scoreline model, deriving H/D/A from predicted goals
+
 - Probability calibration and reliability plots
 - Rolling xG features (needs a Championship xG data source)
 - Betting simulation with ROI and uncertainty (expected to be near or below zero)
@@ -68,3 +70,5 @@ Next:
 - `ratings_experiment.py`: compares Elo variants (entry priors, new-team K boost)
 - `app.py`: Streamlit app
 - `data/`: season CSVs from football-data.co.uk and `entrants.csv` (promoted and relegated teams by season)
+- - `dixon_coles.py`: Dixon-Coles scoreline model with time decay
+- `dixon_coles_experiment.py`: walk-forward comparison of Elo, Dixon-Coles and bookmaker
