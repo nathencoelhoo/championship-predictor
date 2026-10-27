@@ -46,6 +46,9 @@ Walk-forward validation (retrained monthly, 1,219 matches from 2024-25 to 2026-2
 
 **Entry priors:** teams relegated from the Premier League start higher than teams promoted from League One. This lowered Elo-only log loss from 1.0546 to 1.0529 (95% CI of the difference: -0.0030 to -0.0004), with a larger gain on matches involving newly arrived teams (1.0803 to 1.0742). A K-factor boost for new teams added nothing and was dropped. The live app uses these ratings.
 **Dixon-Coles:** a time-decayed Dixon-Coles scoreline model (attack/defence strengths, Poisson goals, low-score correction) performed on par with Elo (log loss 1.0558 vs 1.0529; 95% CI of the difference includes zero) and was insensitive to the decay half-life (180 to 730 days). A 50/50 blend of Elo and Dixon-Coles scored 1.0502, a small gain that is not statistically significant. All models remain behind the bookmaker (1.0374).
+**Calibration:** Reliability diagrams (1,235 walk-forward predictions) show home and away probabilities from Elo, Dixon-Coles and the bookmaker tracking the diagonal within sampling error, with a slight tendency to overstate the strongest favourites. Draw probabilities barely vary (about 0.20 to 0.30 for every model, including the bookmaker) and carry little information; all models slightly under-predict draws (Elo 25.9% vs 27.4% actual). Expected calibration error was 0.021 for Elo, 0.024 for the bookmaker and 0.038 for Dixon-Coles. With about 200 matches per bin, sampling noise alone produces an error of roughly 0.02 to 0.03, so Elo and the bookmaker are indistinguishable from perfectly calibrated, while Dixon-Coles is somewhat noisier.
+
+![Reliability diagrams](calibration.png)
 
 ## Roadmap
 
