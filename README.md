@@ -80,7 +80,7 @@ Next:
 - `ratings_experiment.py`: compares Elo variants (entry priors, new-team K boost)
 - `app.py`: Streamlit app
 - `data/`: season CSVs from football-data.co.uk and `entrants.csv` (promoted and relegated teams by season)
-- - `dixon_coles.py`: Dixon-Coles scoreline model with time decay
+- `dixon_coles.py`: Dixon-Coles scoreline model with time decay
 - `dixon_coles_experiment.py`: walk-forward comparison of Elo, Dixon-Coles and bookmaker
 -  calibration_analysis.py: reliability diagrams and calibration error for Elo, Dixon-Coles and the bookmaker
 -  tests/: pytest suite covering data leakage, probabilities and entry priors
