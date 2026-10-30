@@ -58,12 +58,13 @@ Done:
 - Entry priors for promoted and relegated teams (small but significant gain)
 - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
 - Probability calibration and reliability plots
+- Tests for data leakage and a cleaner module structure
 
 Next:
 
 - Rolling xG features (needs a Championship xG data source)
 - Betting simulation with ROI and uncertainty (expected to be near or below zero)
-- Tests for data leakage and a cleaner module structure
+
 
 ## Files
 
