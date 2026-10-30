@@ -62,11 +62,11 @@ Done:
 - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
 - Probability calibration and reliability plots
 - Tests for data leakage
+- Betting simulation with ROI and bootstrap uncertainty (no edge found, as expected)
   
 Next:
 
 - Rolling xG features (needs a Championship xG data source)
-- Betting simulation with ROI and uncertainty (expected to be near or below zero)
 - cleaner module structure
  
 
@@ -84,3 +84,4 @@ Next:
 - `dixon_coles_experiment.py`: walk-forward comparison of Elo, Dixon-Coles and bookmaker
 -  calibration_analysis.py: reliability diagrams and calibration error for Elo, Dixon-Coles and the bookmaker
 -  tests/: pytest suite covering data leakage, probabilities and entry priors
+-  betting_simulation.py: flat-stake value-betting simulation with bootstrap ROI intervals
