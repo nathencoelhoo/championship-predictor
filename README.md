@@ -1,5 +1,5 @@
 # EFL Championship Match Predictor
-
+![tests](https://github.com/nathencoelhoo/championship-predictor/actions/workflows/tests.yml/badge.svg)
 **Live demo:** https://championship-predictor.streamlit.app/
 
 Predicts Home / Draw / Away probabilities for Championship matches and
