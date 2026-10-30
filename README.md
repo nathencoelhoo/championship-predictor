@@ -58,12 +58,15 @@ Done:
 - Entry priors for promoted and relegated teams (small but significant gain)
 - Dixon-Coles scoreline model, deriving H/D/A from predicted goals
 - Probability calibration and reliability plots
-- Tests for data leakage and a cleaner module structure
-
+- Tests for data leakage
+  
 Next:
 
 - Rolling xG features (needs a Championship xG data source)
 - Betting simulation with ROI and uncertainty (expected to be near or below zero)
+- cleaner module structure
+ 
+
 
 
 ## Files
@@ -77,3 +80,4 @@ Next:
 - - `dixon_coles.py`: Dixon-Coles scoreline model with time decay
 - `dixon_coles_experiment.py`: walk-forward comparison of Elo, Dixon-Coles and bookmaker
 -  calibration_analysis.py: reliability diagrams and calibration error for Elo, Dixon-Coles and the bookmaker
+-  tests/: pytest suite covering data leakage, probabilities and entry priors
